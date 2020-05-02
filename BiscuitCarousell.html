@@ -1,0 +1,206 @@
+<html>
+<head>
+	<style>
+
+body {
+	--toggle: 1;
+	--playState: "running"	;
+	position: relative;
+}
+
+#mask_div {
+	width:800px;
+	height:400px;
+	overflow: hidden;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 1;
+}
+/*#mask_div2 {
+	width:800px;
+	height:800px;
+	position: absolute;
+	top:0;
+	left:0;
+	background-image: url("https://inside-the-biscuit-tin.github.io/BiscuitTin_AlphaConicv2.png");
+	z-index: 99;
+	pointer-events: none;
+}*/
+
+.mask {
+	position: absolute;
+	width:400px;
+	height: 400px;
+	overflow: hidden;
+	z-index: 99;
+	pointer-events: none;
+}
+.quarter {
+	position: absolute;
+	width:800px;
+	height:800px;
+	top:0;
+	left:0;
+	pointer-events: none;
+}
+#right_quarter {
+	left:-400;
+}
+#left_quarter {
+}
+#left_quarter_mask {
+	top:0;
+	left:0;
+}
+#right_quarter_mask {
+	top:0;
+	left:400;
+}
+
+#container {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-origin: bottom center;
+}
+
+#container2 {
+	position: absolute;
+    top: 0%;
+    left: 0%;
+	width:100%;
+	height:100%;
+	z-index: 2;
+	transform-origin: bottom center;
+}
+
+#biscuit_tin {
+	position: absolute;
+	top :0;
+	left:0;
+}
+
+.bisc_div {
+	position: absolute;
+	z-index: 3
+}
+
+.biscuits {
+	max-width: 190px;
+	max-height: 190px;
+	z-index: 3;
+}
+
+.rotate_container {
+   -webkit-animation:spin 1s linear 1 forwards;
+    -moz-animation:spin 1s linear 1 forwards;
+    animation:spin 1s linear 1 forwards;
+    /*animation-fill-mode: forwards;*/
+}
+
+.magnify_biscuit {
+   -webkit-animation:magnify 0.5s linear 1 0.4s forwards;
+    -moz-animation:magnify 0.5s linear 1 0.4s forwards;
+    animation:magnify 0.5s linear 1 0.4s forwards;
+    /*animation-fill-mode: forwards;*/
+}
+
+.shrink_biscuit {
+   -webkit-animation:shrink 0.5s linear 0.4s 1 forwards;
+    -moz-animation:shrink 0.5s linear 0.4s 1 forwards;
+    animation:shrink 0.5s linear 0.4s 1 forwards;
+    /*animation-fill-mode: forwards;*/
+}
+
+.float_biscuit {
+	-webkit-animation: float 0.5s linear 0.4s 1 forwards;
+    -moz-animation: float 0.5s linear 0.4s 1 forwards;
+    animation: float 0.5s linear 0.4s 1 forwards;
+}
+
+.sink_biscuit {
+	-webkit-animation: sink 0.5s linear 0.4s 1 forwards;
+    -moz-animation: sink 0.5s linear 0.4s 1 forwards;
+    animation: sink 0.5s linear 0.4s 1 forwards;
+}
+
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(45deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(45deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(45deg); transform:rotate(45deg); } }
+
+/*@-moz-keyframes magnify { 100% { -moz-transform: rotate(-45deg) scale(1.5,1.5) translate(12%,0); } }
+@-webkit-keyframes magnify { 100% { -webkit-transform: rotate(-45deg) scale(2,2) translate(12%,0); } }
+@keyframes magnify{ 100% { -webkit-transform: rotate(-45deg) scale(2,2) translate(12%,0); transform: rotate(-45deg) scale(2,2) translate(12%,0); } }*/
+
+@-moz-keyframes magnify { 100% { -moz-transform: scale(1.5,1.5) translate(0,+20%) ; z-index:4;} }
+@-webkit-keyframes magnify { 100% { -webkit-transform: scale(1.5,1.5) translate(0,+20%) ; z-index:4; } }
+@keyframes magnify{ 100% { -webkit-transform: scale(1.5,1.5) translate(0,+20%) ; z-index:4; transform: scale(1.5,1.5) translate(0,+20%); } }
+
+@-moz-keyframes shrink { 100% { -moz-transform: scale(1,1) translate(0,0) ; z-index:3; } }
+@-webkit-keyframes shrink { 100% { -webkit-transform: scale(1,1) translate(0,0) ; z-index:3; } }
+@keyframes shrink{ 100% { -webkit-transform: scale(1,1) translate(0,0) ; z-index:3; transform: scale(1,1) translate(0,0) ;} }
+
+@-moz-keyframes float { 100% { z-index:4; } }
+@-webkit-keyframes float { 100% {  z-index:4; } }
+@keyframes float { 100% {  z-index:4; } }
+
+@-moz-keyframes sink { 100% { z-index:3; } }
+@-webkit-keyframes sink { 100% {  z-index:3; } }
+@keyframes sink { 100% {  z-index:3; } }
+
+</style>
+<script>
+
+
+</script>
+</head>
+
+<body>
+<!-- <div id = "mask_div2">
+</div> -->
+<div id = "right_quarter_mask" class="mask">
+	<div id="right_quarter" class="quarter" style="background:  conic-gradient(rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, 1) 25%) 50% 100% / 100% 100% no-repeat, radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 8%, rgba(255,255,255,0) 12%); ">
+	</div>
+</div>
+<div id = "left_quarter_mask" class="mask">
+	<div id="left_quarter" class="quarter" style="background: conic-gradient(rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 78%) 50% 100% / 100% 100% no-repeat, radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 8%, rgba(255,255,255,0) 12%); width:800px;height:800px">
+	</div>
+</div>
+<div id = "mask_div">
+ 	<div id = "container">
+	 	<div id = "container2">
+		 	<div id= "bisc_div0" class="bisc_div">
+		 		<img class="biscuits" id="biscuit0">
+	 		</div>
+		 	<div id= "bisc_div1" class="bisc_div">
+		 		<img class="biscuits" id="biscuit1">
+			</div>
+		 	<div id="bisc_div2" class="bisc_div">
+		 		<img class="biscuits" id="biscuit2">
+	 		</div>
+		 	<div id= "bisc_div3" class="bisc_div">
+		 		<img class="biscuits" id="biscuit3">
+		 	</div>
+		 	<div id = "bisc_div4" class="bisc_div">
+		 		<img class="biscuits" id="biscuit4">
+		 	</div>
+		 	<div id = "bisc_div5" class="bisc_div">
+		 	<img class="biscuits" id="biscuit5">
+		 	</div>
+		 	<div id = "bisc_div6" class="bisc_div">
+		 	<img class="biscuits" id="biscuit6">
+		 	</div>
+		 	<img id="biscuit_tin" src="https://inside-the-biscuit-tin.github.io/BiscuitTin_Empty_v2.png" style="object-fit: cover">
+		</div>
+	</div>
+ </div>
+ 
+ <script type = "text/javascript" src = "/Users/samwestlake/Google Drive/Websites/KT Website/Fiddles/BiscuitCarousell.js">
+ </script>
+</body>
+</html>
