@@ -93,6 +93,7 @@ forward_wind.addEventListener("mousedown", initiateWind);
 rewind.addEventListener("mousedown", initiateWind);
 forward_wind.addEventListener("mouseup", endWind);
 rewind.addEventListener("mouseup", endWind);
+document.documentElement.addEventListener("mouseup",endWind);
 
 step_back.addEventListener("click", initiateStep);
 step_forward.addEventListener("click", initiateStep);
@@ -132,7 +133,13 @@ function initiateWind(e) {
 }
 
 function endWind(e) {
-    winding=false;
+    if (e.target.type ="HTML") {
+        if(winding) {
+            winding = false;
+        }
+    }  else {
+        winding=false;
+    }
 }
 function setDirectionParameters(step_dir) {
     if (step_dir == "step_back") {
