@@ -84,6 +84,11 @@ step_back = document.getElementById("step_back");
 forward_wind = document.getElementById("forward_wind");
 rewind = document.getElementById("rewind");
 
+step_forward.setAttribute('draggable', false);
+step_back.setAttribute('draggable', false);
+forward_wind.setAttribute('draggable', false);
+rewind.setAttribute('draggable', false);
+
 forward_wind.addEventListener("mousedown", initiateWind);
 rewind.addEventListener("mousedown", initiateWind);
 forward_wind.addEventListener("mouseup", endWind);
