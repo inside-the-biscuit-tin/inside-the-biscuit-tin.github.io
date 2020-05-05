@@ -1,3 +1,5 @@
+waitForElement();
+
 function waitForElement(){
     if(typeof imageList !== "undefined"){
         //variable exists, do what you want
@@ -11,11 +13,6 @@ function waitForElement(){
 //         biscuit_fp + "Biscuits4.png",
 //         biscuit_fp + "Biscuits3_both.png",
 //         biscuit_fp + "Biscuits1.png"];
-
-       var data = event.data;
-       var imageList = data.imageList;
-       var occasionList = data.occasionList;
-       console.log(event.source);
 
        letters_fp = "https://inside-the-biscuit-tin.github.io/Letters/"
     // occasionList = ["Epidemics",
