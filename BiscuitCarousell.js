@@ -3,23 +3,23 @@ function initialiseWidget(data){
     var imageList = data.imageList;
     var occasionList = data.occasionList;
 
-biscuit_fp = "https://inside-the-biscuit-tin.github.io/Biscuits/"
-imageList = [biscuit_fp + "Biscuits1.png",
-        biscuit_fp + "Biscuits4.png",
-        biscuit_fp + "Biscuits3_both.png",
-        biscuit_fp + "Biscuits1.png",
-        biscuit_fp + "Biscuits4.png",
-        biscuit_fp + "Biscuits3_both.png",
-        biscuit_fp + "Biscuits1.png"];
+// biscuit_fp = "https://inside-the-biscuit-tin.github.io/Biscuits/"
+// imageList = [biscuit_fp + "Biscuits1.png",
+//         biscuit_fp + "Biscuits4.png",
+//         biscuit_fp + "Biscuits3_both.png",
+//         biscuit_fp + "Biscuits1.png",
+//         biscuit_fp + "Biscuits4.png",
+//         biscuit_fp + "Biscuits3_both.png",
+//         biscuit_fp + "Biscuits1.png"];
 
-   letters_fp = "https://inside-the-biscuit-tin.github.io/Letters/"
-occasionList = ["Epidemics",
-            "Moving",
-            "Epidemics",
-            "Epidemics",
-            "Moving",
-            "Epidemics",
-            "Epidemics"];
+//    letters_fp = "https://inside-the-biscuit-tin.github.io/Letters/"
+// occasionList = ["Epidemics",
+//             "Moving",
+//             "Epidemics",
+//             "Epidemics",
+//             "Moving",
+//             "Epidemics",
+//             "Epidemics"];
 
     im_coords = [{left: "210px", top: "580px"},
                 {left: "135px", top: "390px"},
