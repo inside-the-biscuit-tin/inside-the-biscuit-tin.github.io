@@ -1,5 +1,3 @@
-initialiseWidget({imageList:"",occasionList:""});
-
 function initialiseWidget(data){
     //variable exists, do what you want
     var imageList = data.imageList;
