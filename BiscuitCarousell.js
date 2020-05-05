@@ -1,5 +1,5 @@
 function waitForElement(){
-    if(typeof someVariable !== "undefined"){
+    if(typeof imageList !== "undefined"){
         //variable exists, do what you want
 
 
