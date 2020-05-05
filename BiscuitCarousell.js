@@ -77,6 +77,9 @@ function initialiseWidget(data){
             img = document.createElement("img");
             img.src = letters_fp + char.toUpperCase() + ".png";
             img.classList.add("letters")
+            if (char == " ") {
+                img.id = "letter_space"
+            }
             occasion.appendChild(img);
         }
     }

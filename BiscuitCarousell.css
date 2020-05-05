@@ -145,6 +145,11 @@ body {
 	display: inline-block;
 }
 
+#letter_space {
+	height: 20px;
+	width: 4px;
+}
+
 .occasion {
 	width:calc(97%*(1/7));
 	text-align: center;
