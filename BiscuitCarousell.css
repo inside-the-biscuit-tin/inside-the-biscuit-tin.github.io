@@ -19,6 +19,7 @@ body {
 	left:0;
 	width:800px;
 	height: 640px;
+	overflow: hidden;
 }
 
 #carousell_div {
