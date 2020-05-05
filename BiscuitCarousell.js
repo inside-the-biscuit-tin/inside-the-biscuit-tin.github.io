@@ -12,7 +12,7 @@ function initialiseWidget(data){
 //         biscuit_fp + "Biscuits3_both.png",
 //         biscuit_fp + "Biscuits1.png"];
 
-//    letters_fp = "https://inside-the-biscuit-tin.github.io/Letters/"
+   
 // occasionList = ["Epidemics",
 //             "Moving",
 //             "Epidemics",
@@ -69,6 +69,8 @@ function initialiseWidget(data){
     }
 
     function displayOccasion(occasion_str, i) {
+        letters_fp = "https://inside-the-biscuit-tin.github.io/Letters/"
+        
         occasion = document.querySelector("#occasion" + i.toString());
         occasion.innerHTML ="";
 
