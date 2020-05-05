@@ -9,7 +9,7 @@
 //         biscuit_fp + "Biscuits1.png"];
 
 
-while (!eventList) {
+while (!imageList) {
 }
    var data = event.data;
    var imageList = data.imageList;
