@@ -8,7 +8,7 @@
 //         biscuit_fp + "Biscuits3_both.png",
 //         biscuit_fp + "Biscuits1.png"];
 
-window.onMessage = (event) => {
+window.parent.onMessage = (event) => {
     if (event.data) {
        var data = event.data;
        var imageList = data.imageList;
