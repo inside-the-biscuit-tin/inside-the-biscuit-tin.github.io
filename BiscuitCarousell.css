@@ -97,7 +97,7 @@ body {
 
 #occasion_div {
 	bottom:10px;
-	left: -80px;
+	left: 0px;
 	position: absolute;
 	width: 1120px; 
 	z-index: 6;
