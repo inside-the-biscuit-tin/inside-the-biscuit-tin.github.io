@@ -1,21 +1,30 @@
 
-biscuit_fp = "https://inside-the-biscuit-tin.github.io/Biscuits/"
-imageList = [biscuit_fp + "Biscuits1.png",
-        biscuit_fp + "Biscuits4.png",
-        biscuit_fp + "Biscuits3_both.png",
-        biscuit_fp + "Biscuits1.png",
-        biscuit_fp + "Biscuits4.png",
-        biscuit_fp + "Biscuits3_both.png",
-        biscuit_fp + "Biscuits1.png"];
+// biscuit_fp = "https://inside-the-biscuit-tin.github.io/Biscuits/"
+// imageList = [biscuit_fp + "Biscuits1.png",
+//         biscuit_fp + "Biscuits4.png",
+//         biscuit_fp + "Biscuits3_both.png",
+//         biscuit_fp + "Biscuits1.png",
+//         biscuit_fp + "Biscuits4.png",
+//         biscuit_fp + "Biscuits3_both.png",
+//         biscuit_fp + "Biscuits1.png"];
+
+window.onMessage = (event) => {
+    if (event.data) {
+       var data = event.data;
+       var imageList = data.imageList;
+       var occasionList = data.occasionList;
+       console.log(event.source);
+    }
+}
 
 letters_fp = "https://inside-the-biscuit-tin.github.io/Letters/"
-occasionList = ["Epidemics",
-            "Moving",
-            "Epidemics",
-            "Epidemics",
-            "Moving",
-            "Epidemics",
-            "Epidemics"];
+// occasionList = ["Epidemics",
+//             "Moving",
+//             "Epidemics",
+//             "Epidemics",
+//             "Moving",
+//             "Epidemics",
+//             "Epidemics"];
 
 im_coords = [{left: "210px", top: "580px"},
             {left: "135px", top: "390px"},
