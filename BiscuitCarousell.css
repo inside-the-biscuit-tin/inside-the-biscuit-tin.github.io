@@ -16,10 +16,9 @@ body {
 #display_div {
 	position:absolute;
 	top:0px;
-	left:0;
+	left:80px;
 	width:800px;
 	height: 640px;
-	overflow: hidden;
 }
 
 #carousell_div {
