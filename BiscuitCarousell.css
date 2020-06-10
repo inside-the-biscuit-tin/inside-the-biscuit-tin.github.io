@@ -19,7 +19,6 @@ body {
 	left:0px;
 	width:1120px;
 	height: 640px;
-	overflow:hidden; 
 }
 
 #carousell_div {
@@ -28,7 +27,6 @@ body {
 	left:160px;
 	width: 800px;
 	height: 600px;
-	overflow: hidden;
 }
 
 #container {
@@ -96,17 +94,19 @@ body {
 }
 
 #occasion_div {
-	bottom:10px;
-	left: 0px;
+	top:0px;
+	left: 50%;
 	position: absolute;
-	width: 1120px; 
-	z-index: 6;
+	z-index: 2;
+	text-align: center;
 }
 
 .letters {
 	height:20px;
 	width:auto;
 	display: inline-block;
+	position: relative;
+	bottom: 0px;
 }
 
 #letter_space {
@@ -115,11 +115,10 @@ body {
 }
 
 .occasion {
-	width:calc(97%*(1/7));
-	text-align: center;
-	vertical-align: middle;
+	width: 160px;
+	height: 20px;
+	position: absolute;
 	display: inline-block;
-	margin-top:0px;
 }
 
 /* ANIMATION*/
@@ -154,16 +153,17 @@ body {
     animation: sink var(--biscuit-anim-dur) linear var(--biscuit-anim-delay) var(--rot-anim-iterations) forwards;
 }
 
-.shift_occasions {
-	-webkit-animation: shift var(--rot-anim-dur) linear 1 forwards;
-    -moz-animation: shift var(--rot-anim-dur) linear 1 forwards;
-    animation: shift var(--rot-anim-dur) linear 1 forwards;
+.fading_out {
+	-webkit-animation: fade_out var(--rot-anim-dur) linear 1;
+    -moz-animation: fade_out var(--rot-anim-dur) linear 1;
+    animation: fade_out var(--rot-anim-dur) linear 1;
+    animation-timing-function: ease-out;
 }
 
-.fading_occasions {
-	-webkit-animation: fade var(--rot-anim-dur) linear 1;
-    -moz-animation: fade var(--rot-anim-dur) linear 1;
-    animation: fade var(--rot-anim-dur) linear 1;
+.fading_in {
+	-webkit-animation: fade_in var(--rot-anim-dur) linear 1;
+    -moz-animation: fade_in var(--rot-anim-dur) linear 1;
+    animation: fade_in var(--rot-anim-dur) linear 1;
     animation-timing-function: ease-out;
 }
 
@@ -188,10 +188,10 @@ body {
 @-webkit-keyframes sink { 100% {  z-index:3; } }
 @keyframes sink { 100% {  z-index:3; } }
 
-@-moz-keyframes shift { 100% {  -moz-transform: translate(calc(20%*(1/7)*var(--rot-direction)),0); } }
-@-webkit-keyframes shift { 100% {  -webkit-transform: translate(calc(20%*(1/7)*var(--rot-direction)),0);  } }
-@keyframes shift { 100% {  -webkit-transform: translate(calc(20%*(1/7)*var(--rot-direction)),0); transform: translate(calc(100%*(1/7)*var(--rot-direction)),0); } }
+@-moz-keyframes fade_out { 100% {  opacity: 0; } }
+@-webkit-keyframes fade_out { 100% {  opacity: 0;  } }
+@keyframes fade_out { 100% {  opacity: 0; } }
 
-@-moz-keyframes fade { 100% {  opacity: 0; } }
-@-webkit-keyframes fade { 100% {  opacity: 0;  } }
-@keyframes fade { 100% {  opacity: 0; } }
+@-moz-keyframes fade_in { 0% { opacity: 0; } 100% {  opacity: 1; } }
+@-webkit-keyframes fade_in { 0% { opacity: 0; } 100% {  opacity: 1;  } }
+@keyframes fade_in { 0% { opacity: 0; } 100% {  opacity: 1; } }

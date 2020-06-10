@@ -1,25 +1,30 @@
+initialiseWidget();
 function initialiseWidget(data){
     //variable exists, do what you want
-    var imageList = data.imageList;
-    var occasionList = data.occasionList;
+    // var imageList = data.imageList;
+    // var occasionList = data.occasionList;
 
-// biscuit_fp = "https://inside-the-biscuit-tin.github.io/Biscuits/"
-// imageList = [biscuit_fp + "Biscuits1.png",
-//         biscuit_fp + "Biscuits4.png",
-//         biscuit_fp + "Biscuits3_both.png",
-//         biscuit_fp + "Biscuits1.png",
-//         biscuit_fp + "Biscuits4.png",
-//         biscuit_fp + "Biscuits3_both.png",
-//         biscuit_fp + "Biscuits1.png"];
+biscuit_fp = "https://inside-the-biscuit-tin.github.io/Biscuits/"
+imageList = [biscuit_fp + "Biscuits1.png",
+        biscuit_fp + "Biscuits4.png",
+        biscuit_fp + "Biscuits3_both.png",
+        biscuit_fp + "Biscuits1.png",
+        biscuit_fp + "Biscuits4.png",
+        biscuit_fp + "Biscuits3_both.png",
+        biscuit_fp + "Biscuits1.png",
+        biscuit_fp + "Biscuits4.png",
+        biscuit_fp + "Biscuits3_both.png"];
 
    
-// occasionList = ["Epidemics",
-//             "Moving",
-//             "Epidemics",
-//             "Epidemics",
-//             "Moving",
-//             "Epidemics",
-//             "Epidemics"];
+occasionList = ["Epidemics",
+            "Moving",
+            "Epidemics",
+            "Epidemics",
+            "Moving",
+            "Epidemics",
+            "Epidemics",
+            "Moving",
+            "Epidemics"];
 
     im_coords = [{left: "210px", top: "580px"},
                 {left: "135px", top: "390px"},
@@ -29,6 +34,8 @@ function initialiseWidget(data){
                 {left: "665px", top: "400px"},
                 {left: "590px", top: "590px"},
                 {left: "395px", top: "665px"}];
+
+    occasion_coords = []
 
     transform_str = window.getComputedStyle(document.documentElement).getPropertyValue('--biscuit-transform');
     t_origin_str = "scale(1,1) translate(0,0)";
@@ -44,7 +51,7 @@ function initialiseWidget(data){
     untaken_steps = 0;
     untaken_step_dirs = [];
 
-    for (var i=0; i < 7; i++) {
+    for (var i=0; i < 8; i++) {
         img = document.querySelector("#biscuit" + i.toString());
         img.src = imageList[i];
 
@@ -66,6 +73,9 @@ function initialiseWidget(data){
         occasion = document.querySelector("#occasion" + i.toString());
 
         displayOccasion(occasionList[i],i);
+
+        occasion.style.transformOrigin = "0px 400px";
+        occasion.style.transform = `rotate(${angle}deg) translate(-50%,-140%)`;
     }
 
     function displayOccasion(occasion_str, i) {
@@ -74,7 +84,8 @@ function initialiseWidget(data){
         occasion = document.querySelector("#occasion" + i.toString());
         occasion.innerHTML ="";
 
-        for (var i=0; i <occasion_str.length; i++) {
+        N = occasion_str.length;
+        for (var i=0; i < N; i++) {
             char = occasion_str[i];
             img = document.createElement("img");
             img.src = letters_fp + char.toUpperCase() + ".png";
@@ -82,6 +93,15 @@ function initialiseWidget(data){
             if (char == " ") {
                 img.id = "letter_space";
             }
+
+            cal_ratio = ((i+0.5)-(N/2))/(1.5*N);
+            letter_shift = Math.round(Math.pow(cal_ratio,2) * 40);
+            if (char=="m" || char =="M") {
+                console.log("break")
+            }
+            rot_angle = cal_ratio * 25;
+            img.style.transform = `translate(0,${letter_shift}px) rotate(${rot_angle}deg)`;
+
             occasion.appendChild(img);
         }
     }
@@ -192,12 +212,14 @@ function initialiseWidget(data){
         bisc_growing = document.getElementById(`biscuit${3 - rot_direction}`);
         occasion_div = document.getElementById("occasion_div");
         if (rot_direction == -1) {
-            out_occasion = document.getElementById("occasion1");
-            in_occasion = document.getElementById("occasion6");
+            out_occasion = document.getElementById("occasion0");
+            out_biscuit = document.getElementById("biscuit0");
         } else if (rot_direction == 1) {
-            out_occasion = document.getElementById("occasion5");
-            in_occasion = document.getElementById("occasion0");
+            out_occasion = document.getElementById("occasion6");
+            out_biscuit = document.getElementById("biscuit6");
         }
+        in_occasion = document.getElementById("occasion7");
+        in_biscuit = document.getElementById("biscuit7");
 
 
         void container.offsetWidth;
@@ -207,23 +229,26 @@ function initialiseWidget(data){
         void biscuit3.parentElement.offsetWidth;
         void out_occasion.offsetWidth;
         void in_occasion.offsetWidth;
+        void out_biscuit.offsetWidth;
+        void in_biscuit.offsetWidth;
 
         container.classList.add("rotate_container");
 
+        bisc_growing.style.animationDirection = "normal";
         bisc_growing.classList.add("magnify_biscuit");
         bisc_growing.parentElement.classList.add("float_biscuit");
 
+        biscuit3.style.animationDirection = "normal";
         biscuit3.classList.add("shrink_biscuit");
         biscuit3.parentElement.classList.add("sink_biscuit");
 
-        occasion_div.classList.add("shift_occasions");
-
         in_occasion.style.visibility= "visible";
-        in_occasion.style.animationDirection = "reverse";
-        out_occasion.style.animationDirection = "forward";
+        in_biscuit.style.visibility= "visible";
         
-        in_occasion.classList.add("fading_occasions");
-        out_occasion.classList.add("fading_occasions");
+        in_occasion.classList.add("fading_in");
+        out_occasion.classList.add("fading_out");
+        in_biscuit.classList.add("fading_in");
+        out_biscuit.classList.add("fading_out");
     }
 
     function endAnimation() {
@@ -235,11 +260,12 @@ function initialiseWidget(data){
         biscuit3.classList.remove("shrink_biscuit");
         biscuit3.parentElement.classList.remove("sink_biscuit");
 
-        occasion_div.classList.remove("shift_occasions");
-
-        in_occasion.classList.remove("fading_occasions");
-        out_occasion.classList.remove("fading_occasions");
-        in_occasion.style.visibility= "hidden";
+        in_occasion.classList.remove("fading_in");
+        out_occasion.classList.remove("fading_out");
+        in_biscuit.classList.remove("fading_in");
+        out_biscuit.classList.remove("fading_out");
+        out_occasion.style.visibility= "hidden";
+        out_biscuit.style.visibility= "hidden";
 
         adjustForRotation(rot_direction);
     }
@@ -263,7 +289,7 @@ function initialiseWidget(data){
         }
 
         var unset_img;
-        for (var i=0; i < POSITION_NO; i++) {
+        for (var i=0; i < 7; i++) {
             bisc_img = document.getElementsByClassName('biscuits')[i];
             bisc_div = bisc_img.parentElement;
 
@@ -272,18 +298,30 @@ function initialiseWidget(data){
             style_obj.top = computedStyle.top;
             style_obj.left = computedStyle.left;
 
+            occasion_div = document.getElementsByClassName("occasion")[i];
+
             ind = i - shift;
             if ( ind < 0 ) {
                 bisc_img.id = "";
                 unset_img = bisc_img;
+                unset_occasion = occasion_div;
             } else if (ind == POSITION_NO) {
                 bisc_img.id = "";
                 unset_img = bisc_img;
+                unset_occasion = occasion_div;
             } else {
                 bisc_img.id = "biscuit" + ind.toString();
                 bisc_img.parentElement.id = "bisc_div" + ind.toString();
+                occasion_div.id = "occasion" + ind.toString();
             }
         }
+
+        biscuit7 = document.getElementById("biscuit7");
+        biscuit7.id = `biscuit${mod(7 - shift,8)}`;
+        bisc_div7 = document.getElementById("bisc_div7");
+        bisc_div7.id = `bisc_div${mod(7 - shift,8)}`;
+        occasion7 = document.getElementById("occasion7");
+        occasion7.id = `occasion${mod(7 - shift,8)}`;
 
         bisc_shrunk = document.getElementById(`biscuit${3 + rot_direction}`);
         bisc_grown = document.getElementById("biscuit3");
@@ -291,33 +329,41 @@ function initialiseWidget(data){
         ind = mod((carousell_pos+POSITION_NO-1), biscuit_n);
         unset_img.src = imageList[ind];
         unset_img.occasionAttached = occasionList[ind];
-        unset_img.id = `biscuit${mod(7 + rot_direction,8)}`;
-        unset_img.parentElement.id = `bisc_div${mod(7 + rot_direction,8)}`;
+        unset_img.id = "biscuit7";
+        unset_img.parentElement.id = "bisc_div7";
+        unset_img.style.visibility = "hidden";
+
+        occasion_str = occasionList[ind];
+        unset_occasion.id = "occasion7";
+        displayOccasion(occasion_str, 7);
+        unset_occasion.style.visibility = "hidden";
         
         bisc_grown.style.transform = transform_str;
         bisc_grown.parentElement.style.zIndex = 4;
         bisc_shrunk.style.transform = t_origin_str;
         bisc_shrunk.parentElement.style.zIndex = 3;
 
-        ind= mod(ROTATION_MEAS+7-shift,8);
+        ind= mod(ROTATION_MEAS+7,8);
 
         unset_div = unset_img.parentElement;
-        unset_div.style.transform = `translate(-50%,-50%) rotate(${mod((ind*45)-135, 360)}deg)`;
+        unset_div.style.transform = `translate(-50%,-50%) rotate(${mod(45*ROTATION_MEAS-180, 360)}deg)`;
         unset_div.style.top = im_coords[ind].top;
         unset_div.style.left = im_coords[ind].left;
+
+        unset_occasion.style.transform = `rotate(${mod(45*ROTATION_MEAS-180, 360)}deg) translate(-50%,-140%)`
+
         if (rot_direction == 1) {
-            unset_div.parentElement.prepend(unset_div);
+            bisc_div7.parentElement.prepend(bisc_div7);
+            occasion7.parentElement.prepend(occasion7);
         } else if (rot_direction == -1) {
             unset_div.parentElement.append(unset_div);
+            unset_occasion.parentElement.append(unset_occasion);
         }
 
         document.getElementById("container2").style.transform = `rotate(${mod((-ROTATION_MEAS*45), 360)}deg)`;
 
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 8; i++) {
             displayOccasion(document.getElementById("biscuit" + i.toString()).occasionAttached,i);
-            if (document.getElementById("biscuit" + i.toString()).occasionAttached==undefined) {
-                console.log("break");
-            }
         }
     }
 
